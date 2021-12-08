@@ -17,13 +17,11 @@ namespace Bookish.DataAccess
 
         public static List<Book> Library()
         {
-            List<Book> books = new List<Book>();
-
             IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            string queryString = "SELECT * FROM dbo.Books";
+            string queryString = "SELECT * FROM Books";
             var bookList = (List<Book>)db.Query<Book>(queryString);
 
-            return books;
+            return bookList;
         }
     }
 }
