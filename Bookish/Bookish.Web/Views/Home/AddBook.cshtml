@@ -1,0 +1,29 @@
+﻿@model NewBookModel
+@{
+    ViewData["Title"] = "Add a New Book";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Add a New Book to the Library</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <p class = "control-label">Title</p>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            <p class = "control-label">Genre</p>
+            @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            <p class = "control-label">Number of Copies Available</p>
+            @Html.EditorFor(model => model.NumberOfCopies, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-group">
+            <p class = "control-label">ISBN</p>
+            @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <input type="submit" value="Submit New Book" />
+    }
+    
+</div>
