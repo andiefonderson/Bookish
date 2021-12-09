@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,24 +20,20 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Library">Library</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddBook">Add Book</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>                        
-                    </ul>
-                    <partial name="_LoginPartial" />
+                    @if (SignInManager.IsSignedIn(User))
+                        {
+                            <ul class="navbar-nav nav justify-content-between">
+                                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li class="nav-item">@Html.ActionLink("Library", "Library", "Home")</li>
+                                <li class="nav-item">@Html.ActionLink("Library", "AddBook", "Home")</li>
+                                <li class="nav-item">@Html.ActionLink("Privacy", "Privacy", "Home")</li>
+                            </ul>
+                        }
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
     <div class="container">
