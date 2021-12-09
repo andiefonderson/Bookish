@@ -48,7 +48,7 @@ namespace Bookish.Web.Controllers
             try
             {
                 SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN);
-                return View("Library");
+                return View();
             }
             catch (Exception)
             {

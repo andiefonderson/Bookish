@@ -5,25 +5,29 @@
 
 <div class="text-center">
     <h1 class="display-4">Add a New Book to the Library</h1>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("AddBook", "Home", FormMethod.Post))
     {
         <div class="form-group">
-            <p class = "control-label">Title</p>
+            <p class="control-label">Title</p>
             @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            <p class = "control-label">Genre</p>
+            <p class="control-label">Genre</p>
             @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            <p class = "control-label">Number of Copies Available</p>
+            <p class="control-label">Number of Copies Available</p>
             @Html.EditorFor(model => model.NumberOfCopies, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <div class="form-group">
-            <p class = "control-label">ISBN</p>
+            <p class="control-label">ISBN</p>
             @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control" } })
         </div>
         <input type="submit" value="Submit New Book" />
+
+        @*<div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Success!</strong> The new book has been added. This is now available in the <a href="/Home/Library">Library</a> link.
+        </div>*@
     }
-    
 </div>

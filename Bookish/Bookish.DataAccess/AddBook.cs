@@ -10,18 +10,12 @@ namespace Bookish.DataAccess
     {
         public static string AddToBooks(string title, string genre, int numberOfCopies, string isbn)
         {
-            Book newBook = new Book();
-
-            newBook.BookID = SqlReference.Library().Count;
-            newBook.Title = title;
-            newBook.AuthorID = SqlReference.Library().Count;
-            newBook.Genre = genre;
-            newBook.NumberOfCopies = numberOfCopies;
-            newBook.ISBN = isbn;
+            int BookID = SqlReference.Library().Count + 1;
+            int AuthorID = SqlReference.Library().Count + 1;
 
             return $"SELECT * FROM dbo.Books \n" +
                 "INSERT INTO dbo.Books(BookID, Title, AuthorID, Genre, NumberOfCopies, ISBN) \n" +
-                $"VALUES({newBook.BookID}, '{newBook.Title}', {newBook.AuthorID}, '{newBook.Genre}', {newBook.NumberOfCopies}, '{newBook.ISBN}')";
+                $"VALUES({BookID}, '{title}', {AuthorID}, '{genre}', {numberOfCopies}, '{isbn}')";
         }
     }
 }
