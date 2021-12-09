@@ -1,6 +1,28 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@model List<Bookish.DataAccess.Book>
+@{
+    ViewData["Title"] = "Library!";
 }
 <h1>@ViewData["Title"]</h1>
-
-<p>THIS IS THE LIBRARY</p>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Number of Copies</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Genre</td>
+                        <td>@item.NumberOfCopies</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

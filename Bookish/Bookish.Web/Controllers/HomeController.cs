@@ -1,8 +1,11 @@
-﻿using Bookish.Web.Models;
+﻿using Bookish.DataAccess;
+using Bookish.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,8 +32,9 @@ namespace Bookish.Web.Controllers
         }
 
         public IActionResult Library()
-        {
-            return View();
+        { 
+            List<Book> bookList = SqlReference.Library();
+            return View(bookList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

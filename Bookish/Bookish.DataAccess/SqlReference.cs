@@ -17,7 +17,7 @@ namespace Bookish.DataAccess
 
         public static List<Book> Library()
         {
-            IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            IDbConnection db = new SqlConnection("Server = localhost; Database = Bookish; Integrated Security = True; MultipleActiveResultSets = true;");
             string queryString = "SELECT * FROM Books";
             var bookList = (List<Book>)db.Query<Book>(queryString);
 
