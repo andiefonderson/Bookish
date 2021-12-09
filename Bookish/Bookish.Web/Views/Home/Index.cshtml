@@ -1,8 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Girl Power Library</h1>
-    <p>You are not logged in, please register an account or sign in.</p>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h1>Join the Galdem @User.Identity.Name!</h1>
+        <p>Here you can find super helpful texts from some super powerful and influential women.  Also, advocates for men's mental health and much, much more. </p>
+    }
+    else
+    {
+        <h1 class="display-4">Welcome to Girl Power Library</h1>
+        <p>You are not logged in, please register an account or sign in.</p>
+    }
+
 </div>
