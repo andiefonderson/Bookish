@@ -32,7 +32,16 @@ namespace Bookish.Web.Controllers
         }
 
         public IActionResult Library()
-        { 
+        {
+            if (TempData["successMessage"].ToString() == "success")
+            {
+                ViewBag.SuccessMessage = "success";
+                TempData["successMessage"] = "";
+}
+            else
+            {
+                ViewBag.SuccessMessage = "";
+            }
             List<Book> bookList = SqlReference.Library();
             List<Book> sortedList = bookList.OrderBy(o => o.Title).ToList();
             return View(sortedList);
@@ -46,15 +55,16 @@ namespace Bookish.Web.Controllers
         [HttpPost]
         public IActionResult AddBook(NewBookModel newBook)
         {
-            try
-            {
+            //try
+            //{
                 SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN);
-                return View();
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+                TempData["successMessage"] = "success";
+                return RedirectToAction("Library");
+            //}
+            //catch (Exception)
+            //{
+            //    return View();
+            //}
             
         }
 
