@@ -1,8 +1,17 @@
 ﻿@model List<Bookish.DataAccess.Book>
 @{
     ViewData["Title"] = "Library!";
+    if (ViewBag.SuccessMessage != "")
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <strong>Success!</strong> The new book has been successfully added.
+        </div>
+    }
 }
 <h1>@ViewData["Title"]</h1>
+
+
 <div>
     <table>
         <thead>
