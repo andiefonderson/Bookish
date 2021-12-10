@@ -38,6 +38,26 @@ namespace Bookish.Web.Controllers
             return View(sortedList);
         }
 
+        public IActionResult AddBook()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBook(NewBookModel newBook)
+        {
+            try
+            {
+                SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN);
+                return View();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+            
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
