@@ -55,17 +55,18 @@ namespace Bookish.Web.Controllers
         [HttpPost]
         public IActionResult AddBook(NewBookModel newBook)
         {
-            //try
-            //{
+            try
+            {
                 SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN);
                 TempData["successMessage"] = "success";
                 return RedirectToAction("Library");
-            //}
-            //catch (Exception)
-            //{
-            //    return View();
-            //}
-            
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "error";
+                return View();
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
