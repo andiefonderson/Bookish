@@ -1,0 +1,48 @@
+﻿@model NewSearch
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Search the Library</h1>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+    {
+        @Html.DropDownListFor(m => m.Column,
+  new SelectList(Enum.GetValues(typeof(Columns))),
+  "Search Criteria: ")
+
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Value)
+        </div>
+        <input type="submit" value="Search" />
+    }
+    @{ if (Model != null)
+        {
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Genre</th>
+                            <th>Number of Copies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model.BookList)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Genre</td>
+                                    <td>@item.NumberOfCopies</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+
+    }
+</div>

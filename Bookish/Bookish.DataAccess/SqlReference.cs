@@ -30,6 +30,14 @@ namespace Bookish.DataAccess
             return bookList;
         }
 
+        public static List<Book> Search(string column, string value)
+        {
+            string queryString = $"SELECT * FROM Books WHERE {column} = '{value}'";
+            var bookList = (List<Book>)db.Query<Book>(queryString);
+
+            return bookList;
+        }
+
         public static void AddToBooks(string title, string genre, int numberOfCopies, string isbn)
         {
             var db = DBConnection();
