@@ -4,22 +4,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Search the Library</h1>
+    <h1 class="display-4 searchTitle">Search the Library</h1>
     @using (Html.BeginForm("Search", "Home", FormMethod.Post))
     {
-        @Html.DropDownListFor(m => m.Column,
-  new SelectList(Enum.GetValues(typeof(Columns))),
-  "Search Criteria: ")
+    <div class="form-group testing">
+        @Html.DropDownListFor(m => m.Column, new SelectList(Enum.GetValues(typeof(Columns))),
+    "Search Criteria: ", new { @class = "dropDown" })
 
-        <div class="form-group">
-            @Html.TextBoxFor(m => m.Value)
-        </div>
-        <input type="submit" value="Search" />
+        @Html.TextBoxFor(m => m.Value, new { @class = "text-box" })
+        <input class="searchSubmit" type="submit" value="Search" />
+    </div>
     }
     @{ if (Model != null)
         {
-            <div>
-                <table>
+            <div class="searchResults">
+                <table class="searchTable">
                     <thead>
                         <tr>
                             <th>Title</th>

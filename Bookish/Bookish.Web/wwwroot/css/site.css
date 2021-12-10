@@ -1,6 +1,8 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+@import url('https://fonts.googleapis.com/css2?family=Meow+Script&display=swap');
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -68,4 +70,53 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+.testing {
+    display: inline;
+    padding: 100px;
+    padding-top: 300px;
+}
+
+.text-box {
+    color: #3d4663;
+    padding: 10px;
+    box-shadow: 4px 4px 0px #f13570;
+    margin-left: 30px;
+    border-color: #3d4663;
+    border-width: thin
+}
+
+.searchTitle {
+    font-family: 'Meow Script', cursive;
+    color: #3d4663;
+    display: block;
+    padding-bottom: 80px;
+    padding-top: 80px; 
+}
+
+.searchSubmit {
+    margin-left: 30px;
+    color: #3d4663;
+    background-color: white;
+    padding: 10px;
+    border-color: #3d4663;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    box-shadow: 4px 4px 0px #fcd02e;
+    border-width: thin
+}
+
+.dropDown {
+    padding: 11px;
+    color: #3d4663;
+    box-shadow: 4px 4px 0px #f13570;
+    border-color: #3d4663;
+}
+
+.searchResults {
+    align-content: center;
+}
+.searchTable {
+    padding-top: 50px; 
 }
