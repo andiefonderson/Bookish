@@ -38,6 +38,27 @@ namespace Bookish.Web.Controllers
             return View(sortedList);
         }
 
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Search(NewSearch newSearch)
+        {
+            try
+            {
+                List<Book> bookList = SqlReference.Search(newSearch.Column, newSearch.Value);
+                newSearch.BookList = bookList;
+
+                return View(newSearch);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+
         public IActionResult AddBook()
         {
             return View();
