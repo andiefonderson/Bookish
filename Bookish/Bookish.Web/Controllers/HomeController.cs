@@ -23,6 +23,7 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Index()
         {
+            TempData["successMessage"] = "";
             return View();
         }
 
@@ -33,6 +34,7 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Library()
         {
+
             if (TempData["successMessage"].ToString() == "success")
             {
                 ViewBag.SuccessMessage = "success";
