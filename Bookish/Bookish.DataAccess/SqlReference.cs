@@ -33,8 +33,8 @@ namespace Bookish.DataAccess
         public static List<Book> Search(string column, string value)
         {
             string queryString = $"SELECT * FROM Books WHERE {column} = '{value}'";
+            var db = DBConnection();
             var bookList = (List<Book>)db.Query<Book>(queryString);
-
             return bookList;
         }
 
