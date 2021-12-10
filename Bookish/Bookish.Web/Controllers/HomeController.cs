@@ -34,7 +34,8 @@ namespace Bookish.Web.Controllers
         public IActionResult Library()
         { 
             List<Book> bookList = SqlReference.Library();
-            return View(bookList);
+            List<Book> sortedList = bookList.OrderBy(o => o.Title).ToList();
+            return View(sortedList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
