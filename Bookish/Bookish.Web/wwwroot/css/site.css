@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-@import url('https://fonts.googleapis.com/css2?family=Meow+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Montserrat:wght@200&display=swap');
 
 a.navbar-brand {
   white-space: normal;
@@ -86,12 +86,20 @@ body {
     border-width: thin
 }
 
-.searchTitle {
+.searchTitle, .homeHeader {
     font-family: 'Meow Script', cursive;
+    font-size: 5.5em;
     color: #3d4663;
     display: block;
-    padding-bottom: 80px;
-    padding-top: 80px; 
+    margin-bottom: 80px;
+    margin-top: 40px;
+    background: -moz-radial-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.homeHeader {  
+    margin-bottom: 0;
 }
 
 .searchSubmit {
@@ -115,8 +123,46 @@ body {
 }
 
 .searchResults {
-    align-content: center;
+    display: flex;
+    margin-top: 50px; 
+    width:100%;
+
 }
 .searchTable {
-    padding-top: 50px; 
+    padding-top: 50px;
+    align-self: center;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    border: solid;
+    border-color: #fcd02e;
+    background-color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.searchGeneral, .homeBackground {
+    background: url(/css/background.png);
+    background-size: 100%;
+    background-repeat:repeat;
+    margin: 0;
+    height: 100vh;
+}
+
+.homeBox {
+    width: 50%;
+    border: solid;
+    border-color: #f13570;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: white;
+    padding: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.homeLi1, .homeLi2 {
+    list-style-type: none; 
+}
+
+.homeImage {
+    width: 200px;
 }
