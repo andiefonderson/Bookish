@@ -123,7 +123,7 @@ namespace Bookish.DataAccess
         public static void AddToBooks(string title, string genre, int numberOfCopies, string isbn, string authorID)
         {
             var db = DBConnection();
-            db.Execute(AddBook.AddToBooks(title, genre, numberOfCopies, isbn, authorID));
+            db.Execute(AddToDatabase(title, int.Parse(authorID), genre, numberOfCopies, isbn));
             db.Close();
         }
     }
