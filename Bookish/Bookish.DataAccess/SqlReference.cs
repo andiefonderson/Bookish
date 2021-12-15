@@ -101,7 +101,6 @@ namespace Bookish.DataAccess
             Book book = (Book)db.Query<Book>(queryString).Single();
             db.Close();
 
-
             return book;
         }
 

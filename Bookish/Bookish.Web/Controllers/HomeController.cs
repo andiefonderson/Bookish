@@ -52,11 +52,10 @@ namespace Bookish.Web.Controllers
             return View(sortedList);
         }
 
-        [HttpGet]
-        public IActionResult Library(Book book)
+        public IActionResult ViewBook(int bookID)
         {
-
-            return View();
+            Book book = SqlReference.GetBook(bookID);
+            return View(book);
         }
 
         public IActionResult Search()
