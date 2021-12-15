@@ -24,7 +24,6 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Index()
         {
-            TempData["successMessage"] = "";
             return View();
         }
 
@@ -35,16 +34,19 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Library()
         {
-
-            if (TempData["successMessage"].ToString() == "success")
+            if(TempData["successMessage"] != null)
             {
-                ViewBag.SuccessMessage = "success";
-                TempData["successMessage"] = "";
-}
-            else
-            {
-                ViewBag.SuccessMessage = "";
+                if (TempData["successMessage"].ToString() == "success")
+                {
+                    ViewBag.SuccessMessage = "success";
+                    TempData["successMessage"] = "";
+                }
+                else
+                {
+                    ViewBag.SuccessMessage = "";
+                }
             }
+            
             List<Book> bookList = SqlReference.Library();
             List<Book> sortedList = bookList.OrderBy(o => o.Title).ToList();
             return View(sortedList);
@@ -97,7 +99,7 @@ namespace Bookish.Web.Controllers
             {
                 selectedItem.Selected = true;
                 ViewBag.Message = "Author: " + selectedItem.Text;
-                ViewBag.Message += "\\nAuthorID: " + newBook.AuthorID;
+                ViewBag.Message += "\nAuthorID: " + newBook.AuthorID;
             }
 
             try

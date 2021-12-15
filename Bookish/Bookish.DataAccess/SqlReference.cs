@@ -102,19 +102,19 @@ namespace Bookish.DataAccess
             return bookList;
         }
 
-        public static List<Users> UsersList()
+        public static List<User> UsersList()
         {
             var db = DBConnection();
-            var userList = (List<Users>)db.Query<Users>(SelectDatabase("Users"));
+            var userList = (List<User>)db.Query<User>(SelectDatabase("Users"));
             db.Close();
 
             return userList;
         }
 
-        public static List<BookCopies> CopiesList()
+        public static List<BookCopy> CopiesList()
         {
             var db = DBConnection();
-            var copiesList = (List<BookCopies>)db.Query<BookCopies>(SelectDatabase("Copies"));
+            var copiesList = (List<BookCopy>)db.Query<BookCopy>(SelectDatabase("Copies"));
             db.Close();
 
             return copiesList;

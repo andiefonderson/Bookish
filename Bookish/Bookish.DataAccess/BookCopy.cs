@@ -2,7 +2,7 @@
 
 namespace Bookish.DataAccess
 {
-    public class BookCopies
+    public class BookCopy
     {
         public int CopyID { get; set; }
         public int BookID { get; set; }

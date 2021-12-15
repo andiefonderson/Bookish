@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bookish.DataAccess
 {
-    public class Users
+    public class User
     {
         public int UserID { get; set; }
         public string FirstName { get; set; }
