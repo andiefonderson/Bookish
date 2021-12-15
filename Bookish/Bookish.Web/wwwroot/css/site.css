@@ -77,6 +77,12 @@ body {
     padding-top: 300px;
 }
 
+.privacyText {
+    color: #3d4663;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
 .text-box {
     color: #3d4663;
     padding: 10px;
@@ -178,8 +184,9 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.navHeading .labelFormat p {
+.navHeading .labelFormat {
     color: #3d4663;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
+
