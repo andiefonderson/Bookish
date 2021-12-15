@@ -16,6 +16,6 @@ namespace Bookish.DataAccess
         public string Genre { get; set; }
         public int NumberOfCopies { get; set; }
         public string ISBN { get; set; }
-        public List<BookCopy> BookCopies { get; set; }
+        public List<string> Borrowers { get; set; }
     }
 }

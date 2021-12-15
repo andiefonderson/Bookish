@@ -52,30 +52,6 @@ namespace Bookish.DataAccess
             return queryString;
         }
 
-        private static string AddToDatabase(string userFirstName, string userSurname, string userEmail, string userPassword)
-        {
-            int userID = UsersList().Count + 1;
-
-            string queryString = SelectDatabase("Users") + "\n" +
-                $"INSERT INTO Users(UserID, FirstName, Surname, Email, Password) \n" +
-                $"VALUES({userID}, '{userFirstName}', '{userSurname}', '{userEmail}', '{userPassword}')";
-
-            return queryString;
-        }
-
-        private static string AddToDatabase(int bookID, bool copyAvailable, DateTime dueDate, int borrowerID)
-        {
-            int copyID = CopiesList().Count + 1;
-            int available = copyAvailable ? 1 : 0;
-
-            string queryString = SelectDatabase("Copies") + "\n" +
-                $"INSERT INTO Copies(CopyID, BookID, Available, DueDate, BorrowerID) \n" +
-                $"VALUES({copyID}, {bookID}, {available}, {dueDate:dd-mm-yyyy}, {borrowerID})";
-
-            return queryString;
-        }
-
-
         public static List<Author> AuthorList()
         {
             var db = DBConnection();
@@ -110,24 +86,6 @@ namespace Bookish.DataAccess
             var db = DBConnection();
             var bookList = (List<Book>)db.Query<Book>(queryString);
             return bookList;
-        }
-
-        public static List<User> UsersList()
-        {
-            var db = DBConnection();
-            var userList = (List<User>)db.Query<User>(SelectDatabase("Users"));
-            db.Close();
-
-            return userList;
-        }
-
-        public static List<BookCopy> CopiesList()
-        {
-            var db = DBConnection();
-            var copiesList = (List<BookCopy>)db.Query<BookCopy>(SelectDatabase("Copies"));
-            db.Close();
-
-            return copiesList;
         }
 
         public static void AddToBooks(string title, string genre, int numberOfCopies, string isbn, string authorID)

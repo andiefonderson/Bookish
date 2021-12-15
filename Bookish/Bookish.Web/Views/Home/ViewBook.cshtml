@@ -13,12 +13,14 @@
             </tr>
         </thead>
         <tbody>
-                    <tr>
-                        <td>@Model.BookID</td>
-                        <td>@Model.Title</td>
-                        <td>@Model.Genre</td>
-                        <td>@Model.NumberOfCopies</td>
-                    </tr>
+            <tr>
+                <td>@Model.BookID</td>
+                <td>@Model.Title</td>
+                <td>@Model.Genre</td>
+                <td>@Model.NumberOfCopies</td>
+
+            </tr>
         </tbody>
     </table>
+    <a href="@Url.Action("CheckOut", "Home", new {bookID=@Model.BookID})">Borrow</a>
 </div>

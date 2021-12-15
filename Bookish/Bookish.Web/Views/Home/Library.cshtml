@@ -26,13 +26,13 @@
             {
                 foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@item.Title</td>
-                        <td>@item.Genre</td>
-                        <td>@item.NumberOfCopies</td>
-                        <td><a href="@Url.Action("ViewBook", "Home", new {bookID=@item.BookID})">View Details</a> </td>
-                        @*<td><input type="submit" value="View Details"></td>*@
-                    </tr>
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Genre</td>
+                <td>@item.NumberOfCopies</td>
+                <td><a href="@Url.Action("ViewBook", "Home", new {bookID=@item.BookID})">View Details</a> </td>
+                @*<td><input type="submit" value="View Details"></td>*@
+            </tr>
                 }
             }
         </tbody>

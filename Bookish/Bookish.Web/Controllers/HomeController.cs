@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Bookish.Web.Controllers
 {
@@ -121,10 +122,31 @@ namespace Bookish.Web.Controllers
             }
         }
 
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut(int bookID)
+        {
+            Book newBook = SqlReference.GetBook(bookID);
+            if (newBook.NumberOfCopies >= newBook.Borrowers.Count)
+            {
+                NewCopy newCopy = new NewCopy(bookID, 1, DateTime.Now.AddDays(14));
+                newBook.Borrowers.Append(User.Identity.Name);
+            }
+            return View();
+        }
+
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }
