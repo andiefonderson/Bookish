@@ -1,6 +1,7 @@
 ﻿using Bookish.DataAccess;
 using Bookish.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,6 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Index()
         {
-            TempData["successMessage"] = "";
             return View();
         }
 
@@ -34,16 +34,19 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Library()
         {
-
-            if (TempData["successMessage"].ToString() == "success")
+            if(TempData["successMessage"] != null)
             {
-                ViewBag.SuccessMessage = "success";
-                TempData["successMessage"] = "";
-}
-            else
-            {
-                ViewBag.SuccessMessage = "";
+                if (TempData["successMessage"].ToString() == "success")
+                {
+                    ViewBag.SuccessMessage = "success";
+                    TempData["successMessage"] = "";
+                }
+                else
+                {
+                    ViewBag.SuccessMessage = "";
+                }
             }
+            
             List<Book> bookList = SqlReference.Library();
             List<Book> sortedList = bookList.OrderBy(o => o.Title).ToList();
             return View(sortedList);
@@ -72,15 +75,36 @@ namespace Bookish.Web.Controllers
 
         public IActionResult AddBook()
         {
-            return View();
+            NewBookModel newBook = new NewBookModel();
+            newBook.AuthorNameList = CreateAuthorList();
+            return View(newBook);
+        }
+
+        private static List<SelectListItem> CreateAuthorList()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var author in SqlReference.AuthorList())
+            {
+                items.Add(new SelectListItem { Text = author.AuthorName, Value = author.AuthorID.ToString() });
+            }
+            return items;
         }
 
         [HttpPost]
         public IActionResult AddBook(NewBookModel newBook)
         {
+            newBook.AuthorNameList = CreateAuthorList();
+            var selectedItem = newBook.AuthorNameList.Find(p => p.Value == newBook.AuthorID.ToString());
+            if(selectedItem != null)
+            {
+                selectedItem.Selected = true;
+                ViewBag.Message = "Author: " + selectedItem.Text;
+                ViewBag.Message += "\nAuthorID: " + newBook.AuthorID;
+            }
+
             try
             {
-                SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN);
+                SqlReference.AddToBooks(newBook.Title, newBook.Genre, newBook.NumberOfCopies, newBook.ISBN, newBook.AuthorID);
                 TempData["successMessage"] = "success";
                 return RedirectToAction("Library");
             }
@@ -89,7 +113,6 @@ namespace Bookish.Web.Controllers
                 ViewBag.Error = "error";
                 return View();
             }
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

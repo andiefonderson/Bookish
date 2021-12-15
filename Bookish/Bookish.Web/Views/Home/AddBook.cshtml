@@ -30,6 +30,11 @@
             <p class="control-label">ISBN</p>
             @Html.EditorFor(model => model.ISBN, new { htmlAttributes = new { @class = "form-control", required="required" } })
         </div>
-        <input class="submit" type="submit" value="Submit New Book" />
+        <div class="form-group">
+            <p class="control-label">Author Name</p>
+            @Html.DropDownListFor(model => model.AuthorID, Model.AuthorNameList, "Please select: ")
+        </div>
+
+        <input type="submit" value="Submit New Book" />
     }
 </div>
