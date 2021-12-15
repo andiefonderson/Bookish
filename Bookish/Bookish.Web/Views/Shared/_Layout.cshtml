@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Bookish.Web</title>
+    <title>@ViewData["Title"] - ~ Girl Power ~</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Site.css" />
     <link rel="shortcut icon" href="~/favicon-32x32.ico" />
@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bookish.Web</a>
+                <a class="navbar-brand navHeading" asp-area="" asp-controller="Home" asp-action="Index">~ Girl Power ~</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,12 +25,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     @if (SignInManager.IsSignedIn(User))
                         {
-                            <ul class="navbar-nav nav justify-content-between">
-                                <li class="nav-item">@Html.ActionLink("- Home -", "Index", "Home")</li>
-                                <li class="nav-item">@Html.ActionLink("- Library -", "Library", "Home")</li>
-                                <li class="nav-item">@Html.ActionLink("- Add Book -", "AddBook", "Home")</li>
-                                <li class="nav-item">@Html.ActionLink("- Search -", "Search", "Home")</li>
-                                <li class="nav-item">@Html.ActionLink("- Privacy -", "Privacy", "Home")</li>
+                            <ul class="navbar-nav nav navHeadings">
+                                <li class="nav-item navLI">@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li class="nav-item navLI">@Html.ActionLink("Library", "Library", "Home")</li>
+                                <li class="nav-item navLI">@Html.ActionLink("Add Book", "AddBook", "Home")</li>
+                                <li class="nav-item navLI">@Html.ActionLink("Search", "Search", "Home")</li>
+                                <li class="nav-item navLI">@Html.ActionLink("Privacy", "Privacy", "Home")</li>
                         </ul>
                     }
                         <partial name="_LoginPartial" />

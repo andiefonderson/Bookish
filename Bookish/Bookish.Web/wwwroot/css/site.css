@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Montserrat:wght@200;400&display=swap');
 
 a.navbar-brand {
   white-space: normal;
@@ -45,7 +45,7 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem #fcd02e;
 }
 
 button.accept-policy {
@@ -77,6 +77,12 @@ body {
     padding-top: 300px;
 }
 
+.privacyText {
+    color: #3d4663;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
 .text-box {
     color: #3d4663;
     padding: 10px;
@@ -86,7 +92,7 @@ body {
     border-width: thin
 }
 
-.searchTitle, .homeHeader {
+.searchTitle, .homeHeader, .gpTitle {
     font-family: 'Meow Script', cursive;
     font-size: 5.5em;
     color: #3d4663;
@@ -98,11 +104,11 @@ body {
     background: radial-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-.homeHeader {  
+.homeHeader, .gpTitle {  
     margin-bottom: 0;
 }
 
-.searchSubmit {
+.submit {
     margin-left: 30px;
     color: #3d4663;
     background-color: white;
@@ -161,8 +167,26 @@ body {
 
 .homeLi1, .homeLi2 {
     list-style-type: none; 
+    font-weight: 200;
 }
 
 .homeImage {
     width: 200px;
 }
+
+.navHeadings {
+    display: flex;
+}
+
+.navLI, .navLI a {
+    padding: 10px;
+    color: #f13570;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navHeading .labelFormat {
+    color: #3d4663;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
