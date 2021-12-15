@@ -16,6 +16,12 @@ namespace Bookish.DataAccess
         public string Genre { get; set; }
         public int NumberOfCopies { get; set; }
         public string ISBN { get; set; }
-        public List<string> Borrowers { get; set; }
+        public List<string> Borrowers = new List<string>();
+    
+    public int NumberAvailable()
+        {
+           return NumberOfCopies - Borrowers.Count;
+        }
+    
     }
 }
