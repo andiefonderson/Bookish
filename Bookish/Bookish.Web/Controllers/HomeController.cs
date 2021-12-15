@@ -52,6 +52,13 @@ namespace Bookish.Web.Controllers
             return View(sortedList);
         }
 
+        [HttpGet]
+        public IActionResult Library(Book book)
+        {
+
+            return View();
+        }
+
         public IActionResult Search()
         {
             return View();

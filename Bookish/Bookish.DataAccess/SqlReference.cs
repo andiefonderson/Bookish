@@ -50,8 +50,8 @@ namespace Bookish.DataAccess
                 $"VALUES({bookID}, '{bookTitle}', {authorID}, '{genre}', {numberOfCopies}, '{isbn}')";
 
             return queryString;
-        }     
-        
+        }
+
         private static string AddToDatabase(string userFirstName, string userSurname, string userEmail, string userPassword)
         {
             int userID = UsersList().Count + 1;
@@ -62,7 +62,7 @@ namespace Bookish.DataAccess
 
             return queryString;
         }
-        
+
         private static string AddToDatabase(int bookID, bool copyAvailable, DateTime dueDate, int borrowerID)
         {
             int copyID = CopiesList().Count + 1;
@@ -83,7 +83,7 @@ namespace Bookish.DataAccess
             db.Close();
 
             return authorList;
-        }        
+        }
 
         public static List<Book> Library()
         {
@@ -92,6 +92,17 @@ namespace Bookish.DataAccess
             db.Close();
 
             return bookList;
+        }
+
+        public static Book GetBook(int bookID)
+        {
+            var db = DBConnection();
+            string queryString = SelectDatabase("Books", "BookID", bookID.ToString());
+            Book book = (Book)db.Query<Book>(queryString).Single();
+            db.Close();
+
+
+            return book;
         }
 
         public static List<Book> Search(string column, string value)

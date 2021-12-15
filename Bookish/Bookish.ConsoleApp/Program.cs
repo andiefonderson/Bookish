@@ -8,12 +8,15 @@ namespace Bookish.ConsoleApp
     {
         static void Main(string[] args)
         {
-            List<Book> bookList = SqlReference.Library();
+            //List<Book> bookList = SqlReference.Library();
 
-            foreach (Book item in bookList)
-            {
-                Console.WriteLine(item.Title.ToString());
-            }
+            //foreach (Book item in bookList)
+            //{
+            //    Console.WriteLine(item.Title.ToString());
+            //}
+
+            Book newBook = SqlReference.GetBook(1);
+            Console.WriteLine(newBook.Title);
             Console.ReadLine();
         }
     }
