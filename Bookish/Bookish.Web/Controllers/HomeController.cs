@@ -122,20 +122,21 @@ namespace Bookish.Web.Controllers
             }
         }
 
-        public IActionResult CheckOut()
-        {
-            return View();
-        }
-
-        [HttpPost]
         public IActionResult CheckOut(int bookID)
         {
             Book newBook = SqlReference.GetBook(bookID);
-            if (newBook.NumberOfCopies >= newBook.Borrowers.Count)
-            {
-                NewCopy newCopy = new NewCopy(bookID, 1, DateTime.Now.AddDays(14));
-                newBook.Borrowers.Append(User.Identity.Name);
-            }
+            return View(newBook.Copies());
+        }
+
+        [HttpPost]
+        public IActionResult CheckOut()
+        {
+            // Book newBook = SqlReference.GetBook(bookID);
+            //if (newBook.NumberOfCopies >= newBook.Borrowers.Count)
+            //{
+            //    NewCopy newCopy = new NewCopy(bookID, 1, DateTime.Now.AddDays(14));
+            //    newBook.Borrowers.Append(User.Identity.Name);
+            //}
             return View();
         }
 

@@ -52,6 +52,18 @@ namespace Bookish.DataAccess
             return queryString;
         }
 
+        private static string AddToDatabase(int bookID, bool copyAvailable)
+        {
+            int copyID = CopiesList().Count + 1;
+            int available = copyAvailable ? 1 : 0;
+
+            string queryString = SelectDatabase("Copies") + "\n" +
+                $"INSERT INTO Copies(CopyID, BookID, Available) \n" +
+                $"VALUES({copyID}, {bookID}, {available})";
+
+            return queryString;
+        }
+
         public static List<Author> AuthorList()
         {
             var db = DBConnection();
@@ -61,11 +73,42 @@ namespace Bookish.DataAccess
             return authorList;
         }
 
+        public static List<BookCopy> CopiesList()
+        {
+            var db = DBConnection();
+            var copiesList = (List<BookCopy>)db.Query<BookCopy>(SelectDatabase("Copies"));
+            db.Close();
+
+            return copiesList;
+        }
+
+        public static List<BookCopy> CopyListbyBookID(int bookID)
+        {
+            var db = DBConnection();
+            var copiesList = (List<BookCopy>)db.Query<BookCopy>(SelectDatabase("Copies", "BookID", bookID.ToString()));
+            db.Close();
+
+            return copiesList;
+        }
+
         public static List<Book> Library()
         {
             var db = DBConnection();
             var bookList = (List<Book>)db.Query<Book>(SelectDatabase("Books"));
             db.Close();
+
+            foreach (Book book in bookList)
+            {
+                List<BookCopy> bookCopies = CopyListbyBookID(book.BookID);
+
+                if (bookCopies.Count < book.NumberOfCopies)
+                {
+                    for (int i = 0; i < book.NumberOfCopies; i++)
+                    {
+                        AddToCopies(book.BookID, true);
+                    }
+                }
+            }
 
             return bookList;
         }
@@ -92,6 +135,13 @@ namespace Bookish.DataAccess
         {
             var db = DBConnection();
             db.Execute(AddToDatabase(title, int.Parse(authorID), genre, numberOfCopies, isbn));
+            db.Close();
+        }
+
+        public static void AddToCopies(int bookID, bool copyAvailable)
+        {
+            var db = DBConnection();
+            db.Execute(AddToDatabase(bookID, copyAvailable));
             db.Close();
         }
     }
