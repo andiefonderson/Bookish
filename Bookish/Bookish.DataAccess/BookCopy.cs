@@ -9,5 +9,10 @@ namespace Bookish.DataAccess
         public int Available { get; set; }
         public DateTime DueDate { get; set; }
         public string BorrowerEmail { get; set; }
+
+        public string BookTitle()
+        {
+            return SqlReference.GetBook(BookID).Title;
+        }
     }
 }

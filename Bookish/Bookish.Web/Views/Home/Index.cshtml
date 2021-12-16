@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model List<Bookish.DataAccess.Book>
+@model List<Bookish.DataAccess.BookCopy>
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -24,27 +24,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            @foreach (var book in Model){
-                                <td>@book.Title</td>
-                                <td>Insert Due Date Here</td>
-                            }
-                        </tr>
+                        @foreach (var book in Model)
+                        {
+                            <tr>
+                                <td>@book.BookTitle()</td>
+                                <td>@book.DueDate.ToLongDateString()</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             }
             else
             {
                 <p class="homeSubhead">We're here to educate, to empower and to enlighten through books such as:</p>
-            <ul class="homeUL">
-                <li class="homeLi1">Dear Ijeawele: A Feminist Manifesto In Fifteen Suggestions</li>
-                <li class="homeLi2">Feminists Don't Wear Pink: and other lies</li>
-                <li class="homeLi1">Slay In Your Lane</li>
-                <li class="homeLi2">I Know Why The Caged Bird Sings</li>
-                <li class="homeLi1">The Power</li>
-                <li class="homeLi2">Harry Potter (what's a library without Hogwarts?)</li>
-            </ul>
-            }            
+                <ul class="homeUL">
+                    <li class="homeLi1">Dear Ijeawele: A Feminist Manifesto In Fifteen Suggestions</li>
+                    <li class="homeLi2">Feminists Don't Wear Pink: and other lies</li>
+                    <li class="homeLi1">Slay In Your Lane</li>
+                    <li class="homeLi2">I Know Why The Caged Bird Sings</li>
+                    <li class="homeLi1">The Power</li>
+                    <li class="homeLi2">Harry Potter (what's a library without Hogwarts?)</li>
+                </ul>
+            }
         </div>
     }
     else

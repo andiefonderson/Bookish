@@ -25,7 +25,7 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Index()
         {
-            List<Book> books = new List<Book>();
+            List<BookCopy> books = new List<BookCopy>();
 
             if (User.Identity.IsAuthenticated)
             {                
@@ -33,7 +33,7 @@ namespace Bookish.Web.Controllers
                 {
                     if(copy.BorrowerEmail == User.Identity.Name)
                     {
-                        books.Add(SqlReference.GetBook(copy.BookID));
+                        books.Add(copy);
                     }
                 }
             }
