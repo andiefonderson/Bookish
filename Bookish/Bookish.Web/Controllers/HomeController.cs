@@ -59,6 +59,27 @@ namespace Bookish.Web.Controllers
             return View(book);
         }
 
+        [HttpPost]
+        public IActionResult CheckOutBook(int bookID)
+        {
+            Book book = SqlReference.GetBook(bookID);
+            foreach (var copy in book.Copies())
+            {
+                if(copy.BorrowerEmail == null)
+                {
+                    string borrowerEmail = User.Identity.Name;
+                    DateTime dueDate = DateTime.Now.AddDays(14);
+                    SqlReference.UpdateCopy(copy.CopyID, false, borrowerEmail, dueDate);
+                    
+                    break;
+                }
+            }
+
+            return RedirectToAction("CheckOut", new {bookID=bookID});
+        }
+
+
+
         public IActionResult Search()
         {
             return View();
@@ -122,6 +143,7 @@ namespace Bookish.Web.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult CheckOut(int bookID)
         {
             Book newBook = SqlReference.GetBook(bookID);

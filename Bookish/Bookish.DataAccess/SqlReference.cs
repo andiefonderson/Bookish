@@ -144,5 +144,16 @@ namespace Bookish.DataAccess
             db.Execute(AddToDatabase(bookID, copyAvailable));
             db.Close();
         }
+
+        public static void UpdateCopy (int copyID, bool available, string borrowerEmail, DateTime dueDate)
+        {
+            int availableBit = available ? 1 : 0; 
+            var db = DBConnection();
+            string queryString = "UPDATE Copies" +
+                $"\n SET Available = {availableBit}, BorrowerEmail = '{borrowerEmail}', DueDate = '{dueDate.Date.ToString("yyyy-MM-dd")}'" +
+                $"\n WHERE CopyID = {copyID};";
+            db.Execute(queryString);
+            db.Close();
+        }
     }
 }

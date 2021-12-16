@@ -21,12 +21,20 @@ namespace Bookish.DataAccess
         {
             return SqlReference.CopyListbyBookID(BookID);
         }
-    //    public List<string> Borrowers = new List<string>();
-    
-    //public int NumberAvailable()
-    //    {
-    //       return NumberOfCopies - Borrowers.Count;
-    //    }
+
+        public bool IsAvailable()
+        {
+            int copyUnavailable = 0;
+            foreach (var copy in Copies())
+            {
+                if(copy.Available != 0)
+                {
+                    copyUnavailable++;
+                }
+            }
+
+            return NumberOfCopies > copyUnavailable;
+        }
     
     }
 }

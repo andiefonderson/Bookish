@@ -8,6 +8,6 @@ namespace Bookish.DataAccess
         public int BookID { get; set; }
         public int Available { get; set; }
         public DateTime DueDate { get; set; }
-        public int BorrowerID { get; set; }
+        public string BorrowerEmail { get; set; }
     }
 }

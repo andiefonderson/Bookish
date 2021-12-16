@@ -3,26 +3,26 @@
 
 
 <div>
-    <h1 class="gpTitle">Thanks! Enjoy your book!</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Copy ID</th>
-                <th>Available?</th>
-                <th>Borrower ID</th>
-                <th>Due Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <h1 class="gpTitle">Thanks</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td>@item.CopyID</td>
-                    <td>@item.Available</td>
-                    <td>@item.BorrowerID</td>
-                    <td>@item.DueDate</td>
+                    <th>Copy ID</th>
+                    <th>Available?</th>
+                    <th>Borrower Email</th>
+                    <th>Due Date</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CopyID</td>
+                        <td>@item.Available</td>
+                        <td>@item.BorrowerEmail</td>
+                        <td>@item.DueDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 </div>
