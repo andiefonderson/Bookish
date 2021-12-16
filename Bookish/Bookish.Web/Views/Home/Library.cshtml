@@ -9,28 +9,33 @@
         </div>
     }
 }
-<h1>@ViewData["Title"]</h1>
+<div class="homeBackground">
+    <h1>@ViewData["Title"]</h1>
 
 
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Number of Copies</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>@item.Title</td>
-                <td>@item.Genre</td>
-                <td>@item.NumberOfCopies</td>
-                <td><a href="@Url.Action("ViewBook", "Home", new {bookID=@item.BookID})">View Details</a> </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+
+
+    <div class="searchResults">
+        <table class="searchTable table-hover table-bordered">
+            <thead class="thead-dark libraryTable">
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Number of Copies</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Genre</td>
+                        <td>@item.NumberOfCopies</td>
+                        <td id="ViewDetails"><a href="@Url.Action("ViewBook", "Home", new {bookID=@item.BookID})">View Details</a> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

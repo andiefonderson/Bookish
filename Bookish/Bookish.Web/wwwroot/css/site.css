@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 @import url('https://fonts.googleapis.com/css2?family=Meow+Script&family=Montserrat:wght@200;400&display=swap');
 
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -63,6 +64,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+#LayoutBackground {
+    background: url(/css/background.png);
 }
 .footer {
   position: absolute;
@@ -130,24 +135,36 @@ body {
 
 .searchResults {
     display: flex;
-    margin-top: 50px; 
-    width:100%;
-
+    margin-top: 50px;
+    width: 100%;
 }
 .searchTable {
     padding-top: 50px;
     align-self: center;
     width: 100%;
     font-family: 'Montserrat', sans-serif;
-    border: solid;
-    border-color: #fcd02e;
     background-color: white;
     margin-left: 10%;
     margin-right: 10%;
+    text-align: center;
+    border: solid;
+    border-color: #f13570;
+}
+
+.libraryTable {
+    background-color: #404040;
+    color: #fff;
+}
+
+td {
+    padding: 10px 0px 10px 0px;
+}
+
+#ViewDetails {
+    text-align: center;
 }
 
 .searchGeneral, .homeBackground {
-    background: url(/css/background.png);
     background-size: 100%;
     background-repeat:repeat;
     margin: 0;
