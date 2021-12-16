@@ -25,7 +25,20 @@ namespace Bookish.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Book> books = new List<Book>();
+
+            if (User.Identity.IsAuthenticated)
+            {                
+                foreach (var copy in SqlReference.CopiesList())
+                {
+                    if(copy.BorrowerEmail == User.Identity.Name)
+                    {
+                        books.Add(SqlReference.GetBook(copy.BookID));
+                    }
+                }
+            }
+
+            return View(books);
         }
 
         public IActionResult Privacy()
